@@ -1,15 +1,62 @@
+// group 'com.example.imagegallerysaver'
+// version '1.0-SNAPSHOT'
+
+// buildscript {
+//     ext.kotlin_version = '1.7.10'
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+
+//     dependencies {
+//         classpath 'com.android.tools.build:gradle:7.3.0'
+//         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//     }
+// }
+
+// rootProject.allprojects {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+
+// apply plugin: 'com.android.library'
+// apply plugin: 'kotlin-android'
+
+// android {
+//     namespace "com.example.imagegallerysaver"
+//     compileSdkVersion 30
+
+//     sourceSets {
+//         main.java.srcDirs += 'src/main/kotlin'
+//     }
+//     defaultConfig {
+//         minSdkVersion 16
+//         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//     }
+//     lintOptions {
+//         disable 'InvalidPackage'
+//     }
+// }
+
+// dependencies {
+//     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+// }
+
+
 group 'com.example.imagegallerysaver'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.7.10' // Kotlin version remains as is
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:7.3.0' // Compatible AGP version
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,20 +73,31 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.example.imagegallerysaver"
-    compileSdkVersion 30
+    compileSdkVersion 30 // Keep this as 30 unless upgrading is required
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17 // Align with Kotlin
+        targetCompatibility JavaVersion.VERSION_17 // Align with Kotlin
+    }
+
+    kotlinOptions {
+        jvmTarget = "17" // Ensure Kotlin targets JVM 17
+    }
+
     lintOptions {
         disable 'InvalidPackage'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version" // Use jdk8 for better compatibility
 }
